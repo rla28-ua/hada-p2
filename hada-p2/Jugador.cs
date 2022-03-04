@@ -84,19 +84,19 @@ namespace HADA
         }
         public void incAmonestaciones()
         {
-            amonestaciones += rand.Next(0, 2);
+            amonestaciones += rand.Next(0, 3);
         }
         public void incFaltas()
         {
-            faltas += rand.Next(0, 3);
+            faltas += rand.Next(0, 4);
         }
         public void decEnergia()
         {
-            energia -= rand.Next(1, 7);
+            energia -= rand.Next(1, 8);
         }
         public void incPuntos()
         {
-            puntos += rand.Next(0, 3);
+            puntos += rand.Next(0, 4);
         }
         public bool todoOk()
         {
