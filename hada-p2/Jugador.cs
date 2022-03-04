@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HADA
 {
-    internal class Jugador
+    class Jugador
     {
         public static int maxAmonestaciones { get; set; }
         public static int maxFaltas { get; set; }
