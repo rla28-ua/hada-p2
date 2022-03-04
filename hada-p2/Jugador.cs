@@ -29,7 +29,7 @@ namespace HADA
 
                     if (value > maxAmonestaciones && amonestacionesMaximoExcedido != null)
                     {
-                        amonestacionesMaximoExcedido(this, new amonestacionesMaximoExcedidoArgs(amonestaciones));
+                        amonestacionesMaximoExcedido(this, new AmonestacionesMaximoExcedidoArgs(amonestaciones));
                     }
                 }
             }
@@ -43,7 +43,7 @@ namespace HADA
 
                 if(value > maxFaltas && faltasMaximoExcedido != null)
                 {
-                    faltasMaximoExcedido(this, new faltasMaximoExcedido(faltas));
+                    faltasMaximoExcedido(this, new FaltasMaximoExcedidoArgs(faltas));
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace HADA
 
                         if(value < minEnergia && energiaMinimaExcedida != null)
                         {
-                            energiaMinimaExcedida(this, new energiaMinimaExcedida(energia));
+                            energiaMinimaExcedida(this, new EnergiaMinimaExcedidaArgs(energia));
                         }
                     }
                 }
@@ -150,10 +150,10 @@ namespace HADA
                 faltas = numFaltas;
             }
         }
-        public class EnergiaMinimaExcedidoArgs : EventArgs
+        public class EnergiaMinimaExcedidaArgs : EventArgs
         {
             public int energia { get; set; }
-            public EnergiaMinimaExcedidoArgs(int porcentaje)
+            public EnergiaMinimaExcedidaArgs(int porcentaje)
             {
                 energia = porcentaje;
             }
