@@ -127,6 +127,36 @@ namespace HADA
             cadena += "Faltas: " + faltas + "; ";
             cadena += "Energia: " + energia + " %; ";
             cadena += "Ok: " + todoOk();
+
+            return cadena;
+        }
+        public event EventHandler<AmonestacionesMaximoExcedidoArgs> amonestacionesMaximoExcedido;
+        public event EventHandler<FaltasMaximoExcedidoArgs> faltasMaximoExcedido;
+        public event EventHandler<EnergiaMinimaExcedidaArgs> energiaMinimaExcedida;
+
+        public class AmonestacionesMaximoExcedidoArgs : EventArgs
+        {
+            public int amonestaciones { get; set; }
+            public AmonestacionesMaximoExcedidoArgs(int amonestacion)
+            {
+                amonestaciones = amonestacion;
+            }
+        }
+        public class FaltasMaximoExcedidoArgs : EventArgs
+        {
+            public int faltas { get; set; }
+            public FaltasMaximoExcedidoArgs(int numFaltas)
+            {
+                faltas = numFaltas;
+            }
+        }
+        public class EnergiaMinimaExcedidoArgs : EventArgs
+        {
+            public int energia { get; set; }
+            public EnergiaMinimaExcedidoArgs(int porcentaje)
+            {
+                energia = porcentaje;
+            }
         }
     }
 }
