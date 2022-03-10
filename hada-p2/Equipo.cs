@@ -82,7 +82,7 @@ namespace Hada
         {
             string cadena;
 
-            cadena = "[" + nombreEquipo + "] Puntos: " + puntos + "; ";
+            cadena = "[" + nombreEquipo + "] Puntos: " + sumarPuntos() + "; ";
             cadena += "Expulsados" + getJugadoresExcedenLimiteAmonestaciones().Count() + "; ";
             cadena += "Lesionados: " + getJugadoresExcedenLimiteFaltas().Count() + "; ";
             cadena += "Retirados: " + getJugadoresExcedenMinimoEnergia().Count() + "\n";
@@ -105,7 +105,7 @@ namespace Hada
             }
             Console.WriteLine("¡¡Número máximo excedido de amonestaciones. Jugador Expulsado");
             Console.WriteLine("Jugador: " + jugador.nombre);
-            Console.WriteLine("Equipo: " + );
+            Console.WriteLine("Equipo: " + nombreEquipo);
             Console.WriteLine("Amonestaciones: " + evento.amonestaciones);
         }
 

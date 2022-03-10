@@ -10,9 +10,10 @@ namespace Hada
         public static bool JugadorOk()
         {
             string nombre = "jugador";
-            int amonestaciones = 2;
+            int amonestaciones = 9;
             int faltas = 4;
             int energia = 10;
+            int puntos = 15;
 
             Jugador jugador = new Jugador(nombre, amonestaciones, faltas, energia, puntos);
 
