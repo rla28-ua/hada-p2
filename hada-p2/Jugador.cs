@@ -14,47 +14,52 @@ namespace HADA
         public static Random rand { private get; set; }
         public string nombre { get; private set; }
         public int puntos { get; set; }
+
+        private int amonestacion;
+        private int faltes;
+        private int porcentaje;
+
         private int amonestaciones
         {
-            get { return amonestaciones; }
-            set
+            get { return amonestacion; }
+            set 
             {
-                if (value < maxAmonestaciones)
+                if (value < 0)
                 {
-                    amonestaciones = 0;
+                    amonestacion = 0;
                 }
                 else
                 {
-                    amonestaciones = value;
+                    amonestacion = value;
 
                     if (value > maxAmonestaciones && amonestacionesMaximoExcedido != null)
                     {
-                        amonestacionesMaximoExcedido(this, new AmonestacionesMaximoExcedidoArgs(amonestaciones));
+                        amonestacionesMaximoExcedido(this, new AmonestacionesMaximoExcedidoArgs(amonestacion));
                     }
                 }
             }
         }
         private int faltas
         {
-            get { return faltas; }
+            get { return faltes; }
             set
             {
-                faltas = value;
+                faltes = value;
 
                 if(value > maxFaltas && faltasMaximoExcedido != null)
                 {
-                    faltasMaximoExcedido(this, new FaltasMaximoExcedidoArgs(faltas));
+                    faltasMaximoExcedido(this, new FaltasMaximoExcedidoArgs(faltes));
                 }
             }
         }
         private int energia
         {
-            get { return energia; }
+            get { return porcentaje; }
             set
             {
                 if(value < 0)
                 {
-                    energia = 0;
+                    porcentaje = 0;
                 }
                 else
                 {
@@ -64,11 +69,11 @@ namespace HADA
                     }
                     else
                     {
-                        energia = value;
+                        porcentaje = value;
 
                         if(value < minEnergia && energiaMinimaExcedida != null)
                         {
-                            energiaMinimaExcedida(this, new EnergiaMinimaExcedidaArgs(energia));
+                            energiaMinimaExcedida(this, new EnergiaMinimaExcedidaArgs(porcentaje));
                         }
                     }
                 }
@@ -122,10 +127,11 @@ namespace HADA
         public override string ToString()
         {
             string cadena;
+            
             cadena = "[" + nombre + "] " + "Puntos: " + puntos + "; ";
-            cadena += "Amonestaciones: " + amonestaciones + "; ";
-            cadena += "Faltas: " + faltas + "; ";
-            cadena += "Energia: " + energia + " %; ";
+            cadena += "Amonestaciones: " + amonestacion + "; ";
+            cadena += "Faltas: " + faltes + "; ";
+            cadena += "Energia: " + porcentaje + " %; ";
             cadena += "Ok: " + todoOk();
 
             return cadena;
@@ -145,9 +151,9 @@ namespace HADA
         public class FaltasMaximoExcedidoArgs : EventArgs
         {
             public int faltas { get; set; }
-            public FaltasMaximoExcedidoArgs(int numFaltas)
+            public FaltasMaximoExcedidoArgs(int faltes)
             {
-                faltas = numFaltas;
+                faltas = faltes;
             }
         }
         public class EnergiaMinimaExcedidaArgs : EventArgs

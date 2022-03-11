@@ -21,6 +21,9 @@ namespace Hada
 
         public Equipo(int nj, string nom)
         {
+            nombreEquipo = nom;
+            movimientos = 0;
+
             jugadores = new List<Jugador>();
             amonestacion = new List<Jugador>();
             faltes = new List<Jugador>();
