@@ -11,9 +11,9 @@ namespace Hada
     class Equipo
     {
         private List<Jugador> jugadores;
-        private List<Jugador> amonestaciones;
-        private List<Jugador> faltas;
-        private List<Jugador> energia;
+        private List<Jugador> amonestacion;
+        private List<Jugador> faltes;
+        private List<Jugador> porcentaje;
         public static int minJugadores { get; set; }
         public static int maxNumeroMovimientos { get; set; }
         public int movimientos { get; private set; }
@@ -22,9 +22,9 @@ namespace Hada
         public Equipo(int nj, string nom)
         {
             jugadores = new List<Jugador>();
-            amonestaciones = new List<Jugador>();
-            faltas = new List<Jugador>();
-            energia = new List<Jugador>();
+            amonestacion = new List<Jugador>();
+            faltes = new List<Jugador>();
+            porcentaje = new List<Jugador>();
 
             for(int i = 0; i < nj; i++)
             {
@@ -37,14 +37,20 @@ namespace Hada
         public bool moverJugadores()
         {
             bool mover = false;
+            int cantidad = 0;
 
             for(int i = 0; i < jugadores.Count(); i++)
             {
-                if (jugadores[i].todoOk())
+                if (jugadores[i].todoOk() && jugadores.Count() >= minJugadores)
                 {
-                    mover = true;
+                    cantidad++;
                     jugadores[i].mover();
                 }
+            }
+            if(cantidad > minJugadores)
+            {
+                mover = true;
+                movimientos++;
             }
             return mover;
         }
@@ -68,15 +74,15 @@ namespace Hada
 
         public List<Jugador> getJugadoresExcedenLimiteAmonestaciones()
         {
-            return amonestaciones;
+            return amonestacion;
         }
         public List<Jugador> getJugadoresExcedenLimiteFaltas()
         {
-            return faltas;
+            return faltes;
         }
         public List<Jugador> getJugadoresExcedenMinimoEnergia()
         {
-            return energia;
+            return porcentaje;
         }
         public override string ToString()
         {
@@ -99,9 +105,9 @@ namespace Hada
         {
             Jugador jugador = (Jugador)sender;
 
-            if(amonestaciones.Contains(jugador) == false)
+            if(amonestacion.Contains(jugador) == false)
             {
-                amonestaciones.Add(jugador);
+                amonestacion.Add(jugador);
             }
             Console.WriteLine("¡¡Número máximo excedido de amonestaciones. Jugador Expulsado");
             Console.WriteLine("Jugador: " + jugador.nombre);
@@ -113,9 +119,9 @@ namespace Hada
         {
             Jugador jugador = (Jugador)(sender);
 
-            if(faltas.Contains(jugador) == false)
+            if(faltes.Contains(jugador) == false)
             {
-                faltas.Add(jugador);
+                faltes.Add(jugador);
             }
             Console.WriteLine("¡¡Número máximo excedido de faltas recibidas. Jugador lesionado!!");
             Console.WriteLine("Jugador: " + jugador.nombre);
@@ -126,9 +132,9 @@ namespace Hada
         {
             Jugador jugador = (Jugador)(sender);
 
-            if(energia.Contains(jugador) == false)
+            if(porcentaje.Contains(jugador) == false)
             {
-                energia.Add(jugador);
+                porcentaje.Add(jugador);
             }
             Console.WriteLine("¡¡Energía mínima excedida. Jugador retirado!!");
             Console.WriteLine("Jugador: " + jugador.nombre);
